@@ -1,39 +1,31 @@
-# This is IT asset management module for Teresa.
+![Falcon](./assets/teresa_falcon_banner.png)
 
-[![Latest Version on Packagist](https://img.shields.io/packagist/v/xbigdaddyx/falcon.svg?style=flat-square)](https://packagist.org/packages/xbigdaddyx/falcon)
-[![GitHub Tests Action Status](https://img.shields.io/github/actions/workflow/status/xbigdaddyx/falcon/run-tests.yml?branch=main&label=tests&style=flat-square)](https://github.com/xbigdaddyx/falcon/actions?query=workflow%3Arun-tests+branch%3Amain)
-[![GitHub Code Style Action Status](https://img.shields.io/github/actions/workflow/status/xbigdaddyx/falcon/fix-php-code-styling.yml?branch=main&label=code%20style&style=flat-square)](https://github.com/xbigdaddyx/falcon/actions?query=workflow%3A"Fix+PHP+code+styling"+branch%3Amain)
-[![Total Downloads](https://img.shields.io/packagist/dt/xbigdaddyx/falcon.svg?style=flat-square)](https://packagist.org/packages/xbigdaddyx/falcon)
+This is IT asset management system module for Teresa.
+<div class="filament-hidden">
 
+<!-- ![Screenshot of Application Feature](./assets/falcon_01.png)
+![Screenshot of Application Feature](./assets/falcon_02.png) -->
+</div>
 
-
-This is where your description should go. Limit it to a paragraph or two. Consider adding a small example.
-
-## Installation
+<!-- ## Installation
 
 You can install the package via composer:
 
 ```bash
-composer require xbigdaddyx/falcon
+composer require :vendor_slug/:package_slug
 ```
 
 You can publish and run the migrations with:
 
 ```bash
-php artisan vendor:publish --tag="falcon-migrations"
+php artisan vendor:publish --tag=":package_slug-migrations"
 php artisan migrate
 ```
 
 You can publish the config file with:
 
 ```bash
-php artisan vendor:publish --tag="falcon-config"
-```
-
-Optionally, you can publish the views using
-
-```bash
-php artisan vendor:publish --tag="falcon-views"
+php artisan vendor:publish --tag=":package_slug-config"
 ```
 
 This is the contents of the published config file:
@@ -43,18 +35,24 @@ return [
 ];
 ```
 
+Optionally, you can publish the views using
+
+```bash
+php artisan vendor:publish --tag=":package_slug-views"
+```
+
 ## Usage
 
 ```php
-$falcon = new XBigDaddyx\Falcon();
-echo $falcon->echoPhrase('Hello, XBigDaddyx!');
+$variable = new VendorName\Skeleton();
+echo $variable->echoPhrase('Hello, VendorName!');
 ```
 
 ## Testing
 
 ```bash
 composer test
-```
+``` -->
 
 ## Changelog
 
@@ -62,7 +60,7 @@ Please see [CHANGELOG](CHANGELOG.md) for more information on what has changed re
 
 ## Contributing
 
-Please see [CONTRIBUTING](.github/CONTRIBUTING.md) for details.
+Please see [CONTRIBUTING](CONTRIBUTING.md) for details.
 
 ## Security Vulnerabilities
 
@@ -70,7 +68,7 @@ Please review [our security policy](../../security/policy) on how to report secu
 
 ## Credits
 
-- [xbigdaddyx](https://github.com/xBigDaddyx)
+- [Faisal Yusuf](https://github.com/:author_username)
 - [All Contributors](../../contributors)
 
 ## License
