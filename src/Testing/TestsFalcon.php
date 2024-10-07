@@ -1,6 +1,6 @@
 <?php
 
-namespace XBigDaddyx\Falcon\Testing;
+namespace Xbigdaddyx\Falcon\Testing;
 
 use Livewire\Features\SupportTesting\Testable;
 

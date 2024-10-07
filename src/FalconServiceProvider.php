@@ -1,6 +1,6 @@
 <?php
 
-namespace XBigDaddyx\Falcon;
+namespace Xbigdaddyx\Falcon;
 
 use Filament\Support\Assets\AlpineComponent;
 use Filament\Support\Assets\Asset;
@@ -9,12 +9,22 @@ use Filament\Support\Assets\Js;
 use Filament\Support\Facades\FilamentAsset;
 use Filament\Support\Facades\FilamentIcon;
 use Illuminate\Filesystem\Filesystem;
+use Illuminate\Support\Facades\Event;
+use Illuminate\Support\Facades\Schedule;
 use Livewire\Features\SupportTesting\Testable;
+use Livewire\Livewire;
 use Spatie\LaravelPackageTools\Commands\InstallCommand;
 use Spatie\LaravelPackageTools\Package;
 use Spatie\LaravelPackageTools\PackageServiceProvider;
-use XBigDaddyx\Falcon\Commands\FalconCommand;
-use XBigDaddyx\Falcon\Testing\TestsFalcon;
+use Xbigdaddyx\Falcon\Commands\FalconCommand;
+use Xbigdaddyx\Falcon\Events\MethodAssigned;
+use Xbigdaddyx\Falcon\Filament\Components\QrViewEntry;
+use Xbigdaddyx\Falcon\Filament\Pages\AssetDashboard;
+use Xbigdaddyx\Falcon\Filament\Pages\InventoryDashboard;
+use Xbigdaddyx\Falcon\Filament\Resources\BrandResource\Widgets\MostUsedBrand;
+use Xbigdaddyx\Falcon\Listeners\CalculateDepreciation;
+use Xbigdaddyx\Falcon\Models\Asset as ModelsAsset;
+use Xbigdaddyx\Falcon\Testing\TestsFalcon;
 
 class FalconServiceProvider extends PackageServiceProvider
 {
@@ -58,12 +68,20 @@ class FalconServiceProvider extends PackageServiceProvider
         }
     }
 
-    public function packageRegistered(): void
-    {
-    }
+    public function packageRegistered(): void {}
 
     public function packageBooted(): void
     {
+        Event::listen(MethodAssigned::class, CalculateDepreciation::class);
+        $this->callAfterResolving(Schedule::class, function (Schedule $schedule) {
+            $assets = ModelsAsset::has('methods')->get();
+            foreach ($assets as $asset) {
+                $schedule->command('falcon:period-check ' . $asset->uuid)->dailyAt('01:00');
+            }
+        });
+        Livewire::component('qr-view-entry', QrViewEntry::class);
+        Livewire::component('inventory-dashboard', InventoryDashboard::class);
+        Livewire::component('asset-dashboard', AssetDashboard::class);
         // Asset Registration
         FilamentAsset::register(
             $this->getAssets(),
@@ -103,8 +121,8 @@ class FalconServiceProvider extends PackageServiceProvider
     {
         return [
             // AlpineComponent::make('falcon', __DIR__ . '/../resources/dist/components/falcon.js'),
-            Css::make('falcon-styles', __DIR__ . '/../resources/dist/falcon.css'),
-            Js::make('falcon-scripts', __DIR__ . '/../resources/dist/falcon.js'),
+            // Css::make('falcon-styles', __DIR__ . '/../resources/dist/falcon.css'),
+            // Js::make('falcon-scripts', __DIR__ . '/../resources/dist/falcon.js'),
         ];
     }
 

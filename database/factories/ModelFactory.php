@@ -1,6 +1,6 @@
 <?php
 
-namespace XBigDaddyx\Falcon\Database\Factories;
+namespace Xbigdaddyx\Falcon\Database\Factories;
 
 use Illuminate\Database\Eloquent\Factories\Factory;
 

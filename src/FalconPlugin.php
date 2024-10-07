@@ -1,9 +1,10 @@
 <?php
 
-namespace XBigDaddyx\Falcon;
+namespace Xbigdaddyx\Falcon;
 
 use Filament\Contracts\Plugin;
 use Filament\Panel;
+
 
 class FalconPlugin implements Plugin
 {
@@ -14,7 +15,23 @@ class FalconPlugin implements Plugin
 
     public function register(Panel $panel): void
     {
-        //
+        $panel
+
+            ->pages([
+                //
+            ])
+            ->resources([
+                \Xbigdaddyx\Falcon\Filament\Resources\AgeResource::class,
+                \Xbigdaddyx\Falcon\Filament\Resources\StatusResource::class,
+                \Xbigdaddyx\Falcon\Filament\Resources\ConditionResource::class,
+                \Xbigdaddyx\Falcon\Filament\Resources\SubCategoryResource::class,
+                \Xbigdaddyx\Falcon\Filament\Resources\CategoryResource::class,
+                \Xbigdaddyx\Falcon\Filament\Resources\AssetResource::class,
+                \Xbigdaddyx\Falcon\Filament\Resources\LocationResource::class,
+                \Xbigdaddyx\Falcon\Filament\Resources\InventoryResource::class,
+                \Xbigdaddyx\Falcon\Filament\Resources\MethodResource::class,
+                \Xbigdaddyx\Falcon\Filament\Resources\ManufactureResource::class,
+            ]);
     }
 
     public function boot(Panel $panel): void

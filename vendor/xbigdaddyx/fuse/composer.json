@@ -1,0 +1,105 @@
+{
+    "name": "xbigdaddyx/fuse",
+    "description": "Multi-Tenancy, User and Employee Management for Teresa",
+    "keywords": [
+        "xbigdaddyx",
+        "laravel",
+        "filament",
+        "fuse"
+    ],
+    "homepage": "https://github.com/xbigdaddyx/fuse",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Faisal Yusuf",
+            "email": "yussupcazzanova97@gmail.com",
+            "role": "Developer"
+        }
+    ],
+    "require": {
+        "php": "^8.3",
+        "charrafimed/global-search-modal": "^3.0",
+        "chrisreedio/socialment": "^3.9",
+        "devdojo/auth": "*",
+        "dotswan/filament-laravel-pulse": "^1.1",
+        "filament/filament": "^3.0",
+        "hosmelq/laravel-pulse-schedule": "^0.2.2",
+        "illuminate/contracts": "^10.0||^11.0",
+        "joaopaulolndev/filament-edit-profile": "^1.0",
+        "laravel/pulse": "^1.2",
+        "leandrocfe/filament-apex-charts": "^3.1",
+        "rmsramos/activitylog": "^1.0",
+        "socialiteproviders/google": "^4.1",
+        "socialiteproviders/microsoft-azure": "^5.2",
+        "spatie/laravel-package-tools": "^1.16",
+        "spatie/laravel-permission": "^6.0",
+        "stechstudio/filament-impersonate": "^3.0",
+        "wildside/userstamps": "^2.4"
+    },
+    "require-dev": {
+        "eightynine/filament-advanced-widgets": "^3.0",
+        "flowframe/laravel-trend": "^0.2.0",
+        "larastan/larastan": "^2.9",
+        "laravel/pint": "^1.14",
+        "nunomaduro/collision": "^8.1.1||^7.10.0",
+        "orchestra/testbench": "^9.0.0||^8.22.0",
+        "pestphp/pest": "^2.35",
+        "pestphp/pest-plugin-arch": "^2.7",
+        "pestphp/pest-plugin-laravel": "^2.3",
+        "phpstan/extension-installer": "^1.3",
+        "phpstan/phpstan-deprecation-rules": "^1.1",
+        "phpstan/phpstan-phpunit": "^1.3",
+        "ryangjchandler/blade-tabler-icons": "^2.3",
+        "spatie/laravel-ray": "^1.35"
+    },
+    "autoload": {
+        "psr-4": {
+            "Xbigdaddyx\\Fuse\\": "src/",
+            "Xbigdaddyx\\Fuse\\Database\\Factories\\": "database/factories/"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "Xbigdaddyx\\Fuse\\Tests\\": "tests/",
+            "Workbench\\App\\": "workbench/app/"
+        }
+    },
+    "scripts": {
+        "post-autoload-dump": "@composer run prepare",
+        "clear": "@php vendor/bin/testbench package:purge-fuse --ansi",
+        "prepare": "@php vendor/bin/testbench package:discover --ansi",
+        "build": [
+            "@composer run prepare",
+            "@php vendor/bin/testbench workbench:build --ansi"
+        ],
+        "start": [
+            "Composer\\Config::disableProcessTimeout",
+            "@composer run build",
+            "@php vendor/bin/testbench serve"
+        ],
+        "analyse": "vendor/bin/phpstan analyse",
+        "test": "vendor/bin/pest",
+        "test-coverage": "vendor/bin/pest --coverage",
+        "format": "vendor/bin/pint"
+    },
+    "config": {
+        "sort-packages": true,
+        "allow-plugins": {
+            "pestphp/pest-plugin": true,
+            "phpstan/extension-installer": true
+        }
+    },
+    "extra": {
+        "laravel": {
+            "providers": [
+                "Xbigdaddyx\\Fuse\\FuseServiceProvider",
+                "Xbigdaddyx\\Fuse\\FusePanelServiceProvider"
+            ],
+            "aliases": {
+                "Fuse": "Xbigdaddyx\\Fuse\\Facades\\Fuse"
+            }
+        }
+    },
+    "minimum-stability": "dev",
+    "prefer-stable": true
+}

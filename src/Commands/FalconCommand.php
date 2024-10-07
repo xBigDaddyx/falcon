@@ -1,6 +1,6 @@
 <?php
 
-namespace XBigDaddyx\Falcon\Commands;
+namespace Xbigdaddyx\Falcon\Commands;
 
 use Illuminate\Console\Command;
 

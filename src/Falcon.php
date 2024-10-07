@@ -1,6 +1,6 @@
 <?php
 
-namespace XBigDaddyx\Falcon;
+namespace Xbigdaddyx\Falcon;
 
 class Falcon
 {

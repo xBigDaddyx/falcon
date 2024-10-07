@@ -1,16 +1,16 @@
 <?php
 
-namespace XBigDaddyx\Falcon\Facades;
+namespace Xbigdaddyx\Falcon\Facades;
 
 use Illuminate\Support\Facades\Facade;
 
 /**
- * @see \XBigDaddyx\Falcon\Falcon
+ * @see \Xbigdaddyx\Falcon\Falcon
  */
 class Falcon extends Facade
 {
     protected static function getFacadeAccessor()
     {
-        return \XBigDaddyx\Falcon\Falcon::class;
+        return \Xbigdaddyx\Falcon\Falcon::class;
     }
 }
