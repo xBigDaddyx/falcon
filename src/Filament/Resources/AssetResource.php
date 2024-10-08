@@ -2,6 +2,7 @@
 
 namespace Xbigdaddyx\Falcon\Filament\Resources;
 
+
 use Xbigdaddyx\Falcon\Filament\Resources\AssetResource\Pages;
 use Xbigdaddyx\Falcon\Filament\Resources\AssetResource\RelationManagers;
 use Xbigdaddyx\Falcon\Models\Asset;
@@ -115,8 +116,8 @@ class AssetResource extends Resource
 
                 ]),
                 Forms\Components\Group::make([
-
                     Forms\Components\FileUpload::make('attachment')
+
                         ->multiple(),
                 ])
 
@@ -186,12 +187,16 @@ class AssetResource extends Resource
             ->filters([
                 Tables\Filters\TrashedFilter::make(),
             ])
+            ->headerActions([
+                \AlperenErsoy\FilamentExport\Actions\FilamentExportHeaderAction::make('export'),
+            ])
             ->actions([
                 Tables\Actions\ViewAction::make(),
                 Tables\Actions\EditAction::make(),
             ])
             ->bulkActions([
                 Tables\Actions\BulkActionGroup::make([
+                    \AlperenErsoy\FilamentExport\Actions\FilamentExportBulkAction::make('export'),
                     Tables\Actions\DeleteBulkAction::make(),
                     Tables\Actions\ForceDeleteBulkAction::make(),
                     Tables\Actions\RestoreBulkAction::make(),

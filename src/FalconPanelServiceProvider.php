@@ -39,9 +39,9 @@ class FalconPanelServiceProvider extends PanelProvider
                 'profile' => MenuItem::make()->label('Company profile'),
             ])
 
-                ->tenantMiddleware([
-                    //
-                ], isPersistent: true)
+                // ->tenantMiddleware([
+                //     //
+                // ], isPersistent: true)
                 //->tenantRoutePrefix('company')
                 ->tenant(\Xbigdaddyx\Fuse\Domain\Company\Models\Company::class, 'short_name', 'company')
                 // ->tenantRegistration(RegisterCompany::class)
@@ -83,8 +83,8 @@ class FalconPanelServiceProvider extends PanelProvider
 
             ])
             ->plugins([
-                \CharrafiMed\GlobalSearchModal\GlobalSearchModalPlugin::make()
-                    ->highlighter(false),
+                // \CharrafiMed\GlobalSearchModal\GlobalSearchModalPlugin::make()
+                //     ->highlighter(false),
                 \ChrisReedIO\Socialment\SocialmentPlugin::make()
                     ->registerProvider('azure', 'microsoft', 'Sign in with Microsoft'),
                 \Xbigdaddyx\Falcon\FalconPlugin::make(),

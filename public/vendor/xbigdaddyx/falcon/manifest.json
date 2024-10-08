@@ -1,0 +1,13 @@
+{
+  "resources/css/falcon.css": {
+    "file": "assets/falcon-Dmjgepqa.css",
+    "src": "resources/css/falcon.css",
+    "isEntry": true
+  },
+  "resources/js/falcon.js": {
+    "file": "assets/falcon-l0sNRNKZ.js",
+    "name": "falcon",
+    "src": "resources/js/falcon.js",
+    "isEntry": true
+  }
+}

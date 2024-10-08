@@ -151,4 +151,5 @@ return array(
     '7d2876738dc0328edeb8a103c76cd8e7' => $vendorDir . '/pestphp/pest/src/Pest.php',
     '377b22b161c09ed6e5152de788ca020a' => $vendorDir . '/spatie/laravel-permission/src/helpers.php',
     'd634523d799d97a8ab4807b650bf5cea' => $vendorDir . '/pestphp/pest-plugin-laravel/src/Autoload.php',
+    '5c6a9495e67e3398fc97ef867ed00846' => $vendorDir . '/spatie/laravel-pdf/src/Support/functions.php',
 );

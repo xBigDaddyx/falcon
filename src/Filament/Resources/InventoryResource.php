@@ -221,18 +221,19 @@ class InventoryResource extends Resource
                         }
                     ),
                 Tables\Columns\ImageColumn::make('manufacture.logo')
+                    ->toggleable(isToggledHiddenByDefault: true)
                     ->label('Manufacture'),
                 Tables\Columns\ImageColumn::make('pictures')
+                    ->toggleable(isToggledHiddenByDefault: true)
                     ->circular()
                     ->stacked(),
                 Tables\Columns\TextColumn::make('name')
                     ->icon('tabler-id')
                     ->iconColor('warning')
-                    ->description(fn(Model $record): string => $record->model)
+                    // ->description(fn(Model $record): string => $record->model)
                     ->weight(FontWeight::Bold)
                     ->searchable(),
                 Tables\Columns\TextColumn::make('model')
-                    ->hidden()
                     ->searchable(),
                 Tables\Columns\TextColumn::make('serial')
                     ->searchable(),
@@ -287,9 +288,31 @@ class InventoryResource extends Resource
             ])
             ->filters([
                 Tables\Filters\TrashedFilter::make(),
+                Tables\Filters\SelectFilter::make('category_id')
+
+                    ->label('Category')
+                    ->relationship('category', 'name')
+                    ->searchable()
+                    ->preload()
+                    ->getOptionLabelFromRecordUsing(fn(Model $record) => "{$record->name} ( {$record->description} )"),
+                Tables\Filters\SelectFilter::make('sub_category_id')
+                    ->label('Sub Category')
+                    ->relationship('subCategory', 'name', modifyQueryUsing: function (Builder $query, Get $get) {
+                        if ($get('category_id')) {
+                            return $query->where('category_id', $get('category_id'));
+                        }
+                        return $query;
+                    })
+                    ->getOptionLabelFromRecordUsing(fn(Model $record) => "{$record->name} ( {$record->description} )")
+                    ->searchable()
+                    ->preload(),
+            ], layout: Tables\Enums\FiltersLayout::AboveContentCollapsible)
+            ->headerActions([
+                \AlperenErsoy\FilamentExport\Actions\FilamentExportHeaderAction::make('export'),
             ])
             ->actions([
                 Tables\Actions\ActionGroup::make([
+
                     Tables\Actions\Action::make('Show Barcode')
                         ->icon('tabler-barcode')
                         ->color('warning')
@@ -313,6 +336,7 @@ class InventoryResource extends Resource
             ])
             ->bulkActions([
                 Tables\Actions\BulkActionGroup::make([
+                    \AlperenErsoy\FilamentExport\Actions\FilamentExportBulkAction::make('export'),
                     Tables\Actions\DeleteBulkAction::make(),
                     Tables\Actions\ForceDeleteBulkAction::make(),
                     Tables\Actions\RestoreBulkAction::make(),

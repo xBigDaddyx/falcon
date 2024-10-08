@@ -48,6 +48,9 @@ class Asset extends Model
         'created_by',
         'updated_by',
     ];
+    protected $casts = [
+        'attachment' => 'array'
+    ];
     public function getBookValueAttribute()
     {
         if ($this->has('depreciation')->exists()) {

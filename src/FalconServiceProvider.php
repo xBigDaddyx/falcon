@@ -50,7 +50,12 @@ class FalconServiceProvider extends PackageServiceProvider
             });
 
         $configFileName = $package->shortName();
-
+        if (file_exists($package->basePath("/../routes/web.php"))) {
+            $package->hasRoutes("web");
+        }
+        if (file_exists($package->basePath("/../routes/api.php"))) {
+            $package->hasRoutes("api");
+        }
         if (file_exists($package->basePath("/../config/{$configFileName}.php"))) {
             $package->hasConfigFile();
         }
@@ -72,6 +77,8 @@ class FalconServiceProvider extends PackageServiceProvider
 
     public function packageBooted(): void
     {
+        \Illuminate\Support\Facades\Blade::componentNamespace('Xbigdaddyx\\Falcon\\Components', 'falcon');
+        $this->publishes([__DIR__ . '/../public/vendor/xbigdaddyx/falcon' => public_path('vendor/xbigdaddyx/falcon')], 'falcon-assets');
         Event::listen(MethodAssigned::class, CalculateDepreciation::class);
         $this->callAfterResolving(Schedule::class, function (Schedule $schedule) {
             $assets = ModelsAsset::has('methods')->get();
