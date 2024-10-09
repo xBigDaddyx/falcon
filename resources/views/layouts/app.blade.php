@@ -11,15 +11,20 @@
     {{-- <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700&display=swap"> --}}
     <link rel="icon" href="{{ asset('storage/images/logo/teresa_falcon_logo.png') }}" />
     <!-- Scripts -->
+    @filamentStyles()
     @stack('styles')
     {{ Vite::useBuildDirectory('vendor/xbigdaddyx/falcon')->withEntryPoints(['resources/css/falcon.css', 'resources/js/falcon.js']) }}
     {{-- @vite('resources/css/app.css', '') --}}
     {{-- @vite(['resources/css/app.css', 'resources/js/app.js']) --}}
 </head>
 
-<body class="font-sans antialiased ">
-    {{ $slot }}
+<body
+    class="font-sans antialiased fi-body fi-panel-falcon min-h-screen bg-gray-50 font-normal text-gray-950 antialiased dark:bg-gray-950 dark:text-white">
+    <main class="h-screen flex-1 items-center justify-center p-4">
+        {{ $slot }}
+    </main>
 
+    @filamentScripts()
 </body>
 
 </html>

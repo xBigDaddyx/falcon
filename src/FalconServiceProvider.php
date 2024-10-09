@@ -16,13 +16,16 @@ use Livewire\Livewire;
 use Spatie\LaravelPackageTools\Commands\InstallCommand;
 use Spatie\LaravelPackageTools\Package;
 use Spatie\LaravelPackageTools\PackageServiceProvider;
+use Xbigdaddyx\Falcon\Column\SpecificationColumn;
 use Xbigdaddyx\Falcon\Commands\FalconCommand;
 use Xbigdaddyx\Falcon\Events\MethodAssigned;
 use Xbigdaddyx\Falcon\Filament\Components\QrViewEntry;
+use Xbigdaddyx\Falcon\Filament\Components\SpecificationEntry;
 use Xbigdaddyx\Falcon\Filament\Pages\AssetDashboard;
 use Xbigdaddyx\Falcon\Filament\Pages\InventoryDashboard;
 use Xbigdaddyx\Falcon\Filament\Resources\BrandResource\Widgets\MostUsedBrand;
 use Xbigdaddyx\Falcon\Listeners\CalculateDepreciation;
+use Xbigdaddyx\Falcon\Livewire\Pages\Inventory\ViewInventory;
 use Xbigdaddyx\Falcon\Models\Asset as ModelsAsset;
 use Xbigdaddyx\Falcon\Testing\TestsFalcon;
 
@@ -86,6 +89,8 @@ class FalconServiceProvider extends PackageServiceProvider
                 $schedule->command('falcon:period-check ' . $asset->uuid)->dailyAt('01:00');
             }
         });
+        Livewire::component('specification-entry', SpecificationEntry::class);
+        Livewire::component('view-inventory', ViewInventory::class);
         Livewire::component('qr-view-entry', QrViewEntry::class);
         Livewire::component('inventory-dashboard', InventoryDashboard::class);
         Livewire::component('asset-dashboard', AssetDashboard::class);

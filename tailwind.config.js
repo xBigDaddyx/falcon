@@ -1,6 +1,7 @@
 /** @type {import('tailwindcss').Config} */
 const colors = require('tailwindcss/colors')
 module.exports = {
+    darkMode: 'class',
     content: [
         './app/Filament/**/*.php',
         './resources/views/**/*.blade.php',
@@ -41,7 +42,6 @@ module.exports = {
                 },
                 black: colors.black,
                 white: colors.white,
-                gray: colors.slate,
                 success: colors.emerald,
                 info: colors.violet,
                 warning: colors.amber,

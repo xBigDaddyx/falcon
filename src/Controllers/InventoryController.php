@@ -13,6 +13,6 @@ class InventoryController extends Controller
     public function show($id)
     {
         $invent = Inventory::findOrFail($id);
-        return view('falcon::pages.inventory.show', ['item' => $invent]);
+        // return view('falcon::pages.inventory.show', ['item' => $invent]);
     }
 }
