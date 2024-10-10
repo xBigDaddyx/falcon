@@ -136,6 +136,7 @@ class ComposerStaticInit4571b9a54ee0109dc7fdd06489813753
         'fe43ca06499ac37bc2dedd823af71eb5' => __DIR__ . '/..' . '/thecodingmachine/safe/generated/zip.php',
         '356736db98a6834f0a886b8d509b0ecd' => __DIR__ . '/..' . '/thecodingmachine/safe/generated/zlib.php',
         'b33e3d135e5d9e47d845c576147bda89' => __DIR__ . '/..' . '/php-di/php-di/src/functions.php',
+        '2cffec82183ee1cea088009cef9a6fc3' => __DIR__ . '/..' . '/ezyang/htmlpurifier/library/HTMLPurifier.composer.php',
         '801c31d8ed748cfa537fa45402288c95' => __DIR__ . '/..' . '/psy/psysh/src/functions.php',
         '38143a9afc50997d55e4815db8489d1c' => __DIR__ . '/..' . '/rector/rector/bootstrap.php',
         'ed33d19cba977f2a7e321f120d94a872' => __DIR__ . '/..' . '/spatie/once/src/functions.php',
@@ -167,6 +168,7 @@ class ComposerStaticInit4571b9a54ee0109dc7fdd06489813753
         ),
         'Z' => 
         array (
+            'ZipStream\\' => 10,
             'ZBateson\\StreamDecorators\\' => 26,
             'ZBateson\\MbWrapper\\' => 19,
             'ZBateson\\MailMimeParser\\' => 24,
@@ -273,6 +275,7 @@ class ComposerStaticInit4571b9a54ee0109dc7fdd06489813753
             'PragmaRX\\Google2FA\\' => 19,
             'PhpParser\\' => 10,
             'PhpOption\\' => 10,
+            'PhpOffice\\PhpSpreadsheet\\' => 25,
             'PhpMyAdmin\\SqlParser\\' => 21,
             'Pest\\Plugin\\' => 12,
             'Pest\\Laravel\\' => 13,
@@ -302,7 +305,9 @@ class ComposerStaticInit4571b9a54ee0109dc7fdd06489813753
         array (
             'Monolog\\' => 8,
             'Mockery\\' => 8,
+            'Matrix\\' => 7,
             'Masterminds\\' => 12,
+            'Maatwebsite\\Excel\\' => 18,
         ),
         'L' => 
         array (
@@ -374,6 +379,8 @@ class ComposerStaticInit4571b9a54ee0109dc7fdd06489813753
         ),
         'E' => 
         array (
+            'EightyNine\\ExcelImport\\Database\\Factories\\' => 42,
+            'EightyNine\\ExcelImport\\' => 23,
             'Egulias\\EmailValidator\\' => 23,
         ),
         'D' => 
@@ -406,6 +413,7 @@ class ComposerStaticInit4571b9a54ee0109dc7fdd06489813753
         array (
             'Cron\\' => 5,
             'Composer\\Semver\\' => 16,
+            'Complex\\' => 8,
             'Codeat3\\BladePhosphorIcons\\' => 27,
             'ChrisReedIO\\Socialment\\Database\\Factories\\' => 42,
             'ChrisReedIO\\Socialment\\' => 23,
@@ -447,6 +455,10 @@ class ComposerStaticInit4571b9a54ee0109dc7fdd06489813753
             0 => __DIR__ . '/..' . '/phpdocumentor/reflection-common/src',
             1 => __DIR__ . '/..' . '/phpdocumentor/reflection-docblock/src',
             2 => __DIR__ . '/..' . '/phpdocumentor/type-resolver/src',
+        ),
+        'ZipStream\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/maennchen/zipstream-php/src',
         ),
         'ZBateson\\StreamDecorators\\' => 
         array (
@@ -801,6 +813,10 @@ class ComposerStaticInit4571b9a54ee0109dc7fdd06489813753
         array (
             0 => __DIR__ . '/..' . '/phpoption/phpoption/src/PhpOption',
         ),
+        'PhpOffice\\PhpSpreadsheet\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/phpoffice/phpspreadsheet/src/PhpSpreadsheet',
+        ),
         'PhpMyAdmin\\SqlParser\\' => 
         array (
             0 => __DIR__ . '/..' . '/phpmyadmin/sql-parser/src',
@@ -882,9 +898,17 @@ class ComposerStaticInit4571b9a54ee0109dc7fdd06489813753
         array (
             0 => __DIR__ . '/..' . '/mockery/mockery/library/Mockery',
         ),
+        'Matrix\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/markbaker/matrix/classes/src',
+        ),
         'Masterminds\\' => 
         array (
             0 => __DIR__ . '/..' . '/masterminds/html5/src',
+        ),
+        'Maatwebsite\\Excel\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/maatwebsite/excel/src',
         ),
         'Livewire\\Volt\\' => 
         array (
@@ -1077,6 +1101,14 @@ class ComposerStaticInit4571b9a54ee0109dc7fdd06489813753
         array (
             0 => __DIR__ . '/..' . '/fakerphp/faker/src/Faker',
         ),
+        'EightyNine\\ExcelImport\\Database\\Factories\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/eightynine/filament-excel-import/database/factories',
+        ),
+        'EightyNine\\ExcelImport\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/eightynine/filament-excel-import/src',
+        ),
         'Egulias\\EmailValidator\\' => 
         array (
             0 => __DIR__ . '/..' . '/egulias/email-validator/src',
@@ -1181,6 +1213,10 @@ class ComposerStaticInit4571b9a54ee0109dc7fdd06489813753
         array (
             0 => __DIR__ . '/..' . '/composer/semver/src',
         ),
+        'Complex\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/markbaker/complex/classes/src',
+        ),
         'Codeat3\\BladePhosphorIcons\\' => 
         array (
             0 => __DIR__ . '/..' . '/codeat3/blade-phosphor-icons/src',
@@ -1256,6 +1292,13 @@ class ComposerStaticInit4571b9a54ee0109dc7fdd06489813753
     );
 
     public static $prefixesPsr0 = array (
+        'H' => 
+        array (
+            'HTMLPurifier' => 
+            array (
+                0 => __DIR__ . '/..' . '/ezyang/htmlpurifier/library',
+            ),
+        ),
         'D' => 
         array (
             'Detection' => 

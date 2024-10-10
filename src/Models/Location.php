@@ -24,7 +24,6 @@ class Location extends Model
     public static function boot()
     {
         parent::boot();
-        Model::shouldBeStrict();
         static::creating(function ($model) {
             $model->company_id = Auth::user()->company_id;
         });

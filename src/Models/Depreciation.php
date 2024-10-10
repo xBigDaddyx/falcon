@@ -23,7 +23,6 @@ class Depreciation extends Model
     public static function boot()
     {
         parent::boot();
-        Model::shouldBeStrict();
         static::created(function ($model) {
             event(new MethodAssigned($model->asset_id, $model->method_id));
         });

@@ -56,16 +56,17 @@ class FalconPanelServiceProvider extends PanelProvider
             ->unsavedChangesAlerts()
             ->passwordReset()
             // ->viteTheme('resources/css/filament/falcon/theme.css')
-            // ->topNavigation()
-            // ->spa()
+            ->topNavigation()
+            ->spa()
             ->maxContentWidth(MaxWidth::Full)
             ->login()
             ->globalSearchKeyBindings(['command+k', 'ctrl+k'])
             ->font('Poppins')
             ->sidebarCollapsibleOnDesktop()
-            ->brandLogo(asset('storage/images/logo/teresa_falcon_logo.png'))
-            ->brandLogoHeight('3rem')
-            ->favicon(asset('storage/images/logo/teresa_falcon_logo.png'))
+            ->darkModeBrandLogo('./vendor/xbigdaddyx/falcon/assets/teresa_falcon_full_dark.png')
+            ->brandLogo(asset('./vendor/xbigdaddyx/falcon/assets/teresa_falcon_full.png'))
+            ->brandLogoHeight('2rem')
+            ->favicon(asset('./vendor/xbigdaddyx/falcon/assets/teresa_falcon_logo.png'))
 
             ->userMenuItems([
                 'profile' => MenuItem::make()
@@ -83,6 +84,13 @@ class FalconPanelServiceProvider extends PanelProvider
 
             ])
             ->plugins([
+                \Rmsramos\Activitylog\ActivitylogPlugin::make()
+                    ->label('Log')
+                    ->pluralLabel('Logs')
+                    ->navigationItem(false)
+                    ->authorize(
+                        fn() => auth()->user()->email === 'faisal.yusuf@hoplun.com'
+                    ),
                 // \CharrafiMed\GlobalSearchModal\GlobalSearchModalPlugin::make()
                 //     ->highlighter(false),
                 \ChrisReedIO\Socialment\SocialmentPlugin::make()

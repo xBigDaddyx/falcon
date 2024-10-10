@@ -19,11 +19,7 @@ class SubCategory extends Model
     use HasFactory, SoftDeletes, Userstamps, HasUuids;
     protected $primaryKey = 'uuid';
     protected $table = 'falcon_sub_categories';
-    public static function boot()
-    {
-        parent::boot();
-        Model::shouldBeStrict();
-    }
+
     protected $fillable = [
         'category_id',
         'name',

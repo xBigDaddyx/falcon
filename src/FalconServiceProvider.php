@@ -24,6 +24,11 @@ use Xbigdaddyx\Falcon\Filament\Components\SpecificationEntry;
 use Xbigdaddyx\Falcon\Filament\Pages\AssetDashboard;
 use Xbigdaddyx\Falcon\Filament\Pages\InventoryDashboard;
 use Xbigdaddyx\Falcon\Filament\Resources\BrandResource\Widgets\MostUsedBrand;
+use Xbigdaddyx\Falcon\Filament\Widgets\AssetCategoryChart;
+use Xbigdaddyx\Falcon\Filament\Widgets\AssetCostChart;
+use Xbigdaddyx\Falcon\Filament\Widgets\AssetOverallStat;
+use Xbigdaddyx\Falcon\Filament\Widgets\AssetPurchasedChart;
+use Xbigdaddyx\Falcon\Filament\Widgets\AssetSummaryChart;
 use Xbigdaddyx\Falcon\Listeners\CalculateDepreciation;
 use Xbigdaddyx\Falcon\Livewire\Pages\Inventory\ViewInventory;
 use Xbigdaddyx\Falcon\Models\Asset as ModelsAsset;
@@ -89,6 +94,10 @@ class FalconServiceProvider extends PackageServiceProvider
                 $schedule->command('falcon:period-check ' . $asset->uuid)->dailyAt('01:00');
             }
         });
+        Livewire::component('asset-overall-stat', AssetOverallStat::class);
+        Livewire::component('asset-cost-chart', AssetCostChart::class);
+        Livewire::component('asset-purchased-chart', AssetPurchasedChart::class);
+        Livewire::component('asset-category-chart', AssetCategoryChart::class);
         Livewire::component('specification-entry', SpecificationEntry::class);
         Livewire::component('view-inventory', ViewInventory::class);
         Livewire::component('qr-view-entry', QrViewEntry::class);

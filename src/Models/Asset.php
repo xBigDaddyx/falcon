@@ -21,19 +21,22 @@ use Illuminate\Database\Eloquent\Casts\Attribute;
 
 class Asset extends Model
 {
+    use LogsActivity;
     use HasFactory, SoftDeletes, Userstamps, HasUuids;
     protected $primaryKey = 'uuid';
     protected $table = 'falcon_assets';
     public static function boot()
     {
         parent::boot();
-        Model::shouldBeStrict();
         static::creating(function ($model) {
             $model->company_id = Auth::user()->company_id;
         });
     }
 
     protected $fillable = [
+        'uuid',
+        'capex_code',
+        'age_id',
         'asset_name',
         'category_id',
         'sub_category_id',
@@ -43,20 +46,41 @@ class Asset extends Model
         'purchase_order',
         'attachment',
         'company_id',
+        'created_at',
+        'updated_at',
         'deleted_at',
         'deleted_by',
         'created_by',
         'updated_by',
     ];
+    public function getActivitylogOptions(): LogOptions
+    {
+        return LogOptions::defaults()
+            ->logOnly([
+                'age_id',
+                'capex_code',
+                'asset_name',
+                'asset_code',
+                'purchased_price',
+                'purchased_at',
+                'purchase_order',
+                'attachment',
+                'company.name',
+                'category.name',
+                'subCategory.name',
+            ])
+            ->logOnlyDirty()
+            ->dontSubmitEmptyLogs();
+    }
     protected $casts = [
         'attachment' => 'array'
     ];
     public function getBookValueAttribute()
     {
-        if ($this->has('depreciation')->exists()) {
+        if ($this->has('depreciation.bookValues')->exists()) {
             return $this->depreciation->bookValues()->where('depreciation_id', $this->uuid)->latest()->first()->book_value;
         }
-        return 0;
+        return $this->purchased_price;
     }
     // public function location(): BelongsTo
     // {

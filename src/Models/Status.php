@@ -19,11 +19,7 @@ class Status extends Model
     use HasFactory, SoftDeletes, Userstamps, HasUuids;
     protected $primaryKey = 'uuid';
     protected $table = 'falcon_statuses';
-    public static function boot()
-    {
-        parent::boot();
-        Model::shouldBeStrict();
-    }
+
     protected $fillable = [
         'name',
         'description',

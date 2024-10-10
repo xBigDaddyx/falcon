@@ -19,11 +19,7 @@ class Age extends Model
     use HasFactory, SoftDeletes, Userstamps, HasUuids;
     protected $primaryKey = 'uuid';
     protected $table = 'falcon_ages';
-    public static function boot()
-    {
-        parent::boot();
-        Model::shouldBeStrict();
-    }
+
     protected $fillable = [
         'category_id',
         'sub_category_id',

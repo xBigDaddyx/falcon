@@ -13,17 +13,16 @@ use Illuminate\Support\Facades\Auth;
 use Spatie\Activitylog\LogOptions;
 use Spatie\Activitylog\Traits\LogsActivity;
 use Wildside\Userstamps\Userstamps;
+use Xbigdaddyx\Fuse\Domain\Company\Models\Company;
 
 class Inventory extends Model
 {
+    use LogsActivity;
     use HasFactory, SoftDeletes, Userstamps, HasUuids;
     protected $primaryKey = 'uuid';
     protected $table = 'falcon_inventories';
-    public static function boot()
-    {
-        parent::boot();
-        Model::shouldBeStrict();
-    }
+
+
     protected $fillable = [
         'category_id',
         'sub_category_id',
@@ -41,11 +40,33 @@ class Inventory extends Model
         'created_by',
         'updated_by',
     ];
+    public function getActivitylogOptions(): LogOptions
+    {
+        return LogOptions::defaults()
+
+            ->logOnly([
+                'name',
+                'model',
+                'serial',
+                'manufacture.name',
+                'condition.name',
+                'status.name',
+                'asset.finance_asset_type',
+                'category.name',
+                'subCategory.name',
+                'specifications'
+            ])
+            ->logOnlyDirty();
+    }
     protected $casts = [
         'pictures' => 'array',
         'specifications' => 'array',
     ];
     public function asset(): BelongsTo
+    {
+        return $this->belongsTo(Asset::class, 'asset_id', 'uuid');
+    }
+    public function assets(): BelongsTo
     {
         return $this->belongsTo(Asset::class, 'asset_id', 'uuid');
     }
@@ -55,7 +76,7 @@ class Inventory extends Model
     }
     public function status(): BelongsTo
     {
-        return $this->belongsTo(Status::class, 'status_id', 'uuid');
+        return $this->belongsTo(Status::class, 'status_id', 'uuid', 'uuid');
     }
     public function subCategory(): BelongsTo
     {
@@ -68,5 +89,9 @@ class Inventory extends Model
     public function manufacture(): BelongsTo
     {
         return $this->belongsTo(Manufacture::class, 'manufacture_id', 'uuid');
+    }
+    public function company(): BelongsTo
+    {
+        return $this->belongsTo(Company::class);
     }
 }

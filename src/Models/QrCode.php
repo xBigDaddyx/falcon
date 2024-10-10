@@ -19,11 +19,7 @@ class QrCode extends Model
     use HasFactory, SoftDeletes, Userstamps, HasUuids;
     protected $primaryKey = 'uuid';
     protected $table = 'falcon_qr_codes';
-    public static function boot()
-    {
-        parent::boot();
-        Model::shouldBeStrict();
-    }
+
     protected $casts = [
         'options' => 'array'
     ];

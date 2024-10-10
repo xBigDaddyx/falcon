@@ -19,11 +19,7 @@ class BookValue extends Model
     use HasFactory, SoftDeletes, Userstamps, HasUuids;
     protected $primaryKey = 'uuid';
     protected $table = 'falcon_book_values';
-    public static function boot()
-    {
-        parent::boot();
-        Model::shouldBeStrict();
-    }
+
     protected $fillable = [
         'depreciation_id',
         'value',

@@ -31,7 +31,7 @@ use Illuminate\Contracts\View\View;
 class InventoryResource extends Resource
 {
     protected static ?string $model = Inventory::class;
-
+    protected static bool $isScopedToTenant = true;
     protected static ?string $recordTitleAttribute = 'model';
     protected static ?int $navigationSort = 9;
     protected static ?string $navigationIcon = 'tabler-device-airpods-case';
@@ -312,7 +312,16 @@ class InventoryResource extends Resource
             ])
             ->actions([
                 Tables\Actions\ActionGroup::make([
-
+                    \Rmsramos\Activitylog\Actions\ActivityLogTimelineTableAction::make('Logs')
+                        ->color('danger')
+                        ->timelineIcons([
+                            'created' => 'tabler-checkbox',
+                            'updated' => 'tabler-pencil',
+                        ])
+                        ->timelineIconColors([
+                            'created' => 'success',
+                            'updated' => 'warning',
+                        ]),
                     Tables\Actions\Action::make('Show Barcode')
                         ->icon('tabler-barcode')
                         ->color('warning')
@@ -455,7 +464,22 @@ class InventoryResource extends Resource
                                 ->iconColor('warning')
                                 ->weight(FontWeight::Bold)
                                 ->size(TextEntrySize::Large),
+                            Infolists\Components\TextEntry::make('asset.asset_name')
+                                ->label('Asset Name')
+                                ->color('primary')
+                                ->copyable()
+                                ->inlineLabel()
+                                ->weight(FontWeight::Bold),
+                            Infolists\Components\TextEntry::make('asset.capex_code')
+                                ->copyable()
+                                ->badge()
+                                ->icon('tabler-file')
+                                ->color('danger')
+                                ->label('Capex Code')
+                                ->inlineLabel()
+                                ->weight(FontWeight::Bold),
                             Infolists\Components\TextEntry::make('asset.purchase_order')
+                                ->copyable()
                                 ->label('Purchase Order')
                                 ->inlineLabel()
                                 ->weight(FontWeight::Bold),

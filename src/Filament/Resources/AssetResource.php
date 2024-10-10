@@ -22,7 +22,7 @@ use Xbigdaddyx\Falcon\Models\Category;
 class AssetResource extends Resource
 {
     protected static ?string $model = Asset::class;
-
+    protected static bool $isScopedToTenant = true;
     protected static ?string $recordTitleAttribute = 'asset_code';
     protected static ?int $navigationSort = 9;
     protected static ?string $navigationIcon = 'tabler-device-imac';
@@ -150,6 +150,7 @@ class AssetResource extends Resource
                     ->icon('tabler-pencil')
                     ->searchable(),
                 Tables\Columns\TextColumn::make('asset_code')
+                    ->sortable()
                     ->copyable()
                     ->weight(FontWeight::Bold)
                     ->iconColor('primary')
@@ -166,6 +167,10 @@ class AssetResource extends Resource
                     ->dateTime('Y-m-d')
                     ->sortable(),
                 Tables\Columns\TextColumn::make('purchase_order')
+                    ->iconColor('primary')
+                    ->icon('tabler-file')
+                    ->searchable(),
+                Tables\Columns\TextColumn::make('capex_code')
                     ->iconColor('primary')
                     ->icon('tabler-file')
                     ->searchable(),
@@ -191,6 +196,16 @@ class AssetResource extends Resource
                 \AlperenErsoy\FilamentExport\Actions\FilamentExportHeaderAction::make('export'),
             ])
             ->actions([
+                \Rmsramos\Activitylog\Actions\ActivityLogTimelineTableAction::make('Logs')
+                    ->color('danger')
+                    ->timelineIcons([
+                        'created' => 'tabler-checkbox',
+                        'updated' => 'tabler-pencil',
+                    ])
+                    ->timelineIconColors([
+                        'created' => 'success',
+                        'updated' => 'warning',
+                    ]),
                 Tables\Actions\ViewAction::make(),
                 Tables\Actions\EditAction::make(),
             ])
